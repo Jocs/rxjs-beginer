@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="./node_modules/rx/dist/rx.all.js"></script>
+	<script src="./node_modules/rx-dom/dist/rx.dom.js"></script>
+</head>
+<body>
+	输入框：<input type="text">
+	<script>
+		const input = document.querySelector('input')
+		const inputStream = Rx.DOM.keyup(input)
+			.pluck('target', 'tagName')
+			.filter(text => text.length > 2)
+			.debounce(500)
+			.distinctUntilChanged()
+			.subscribe(text => console.log(text))
+
+	</script>
+</body>
+</html>

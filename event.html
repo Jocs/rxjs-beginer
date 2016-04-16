@@ -31,8 +31,12 @@
 
 		const source = Rx.Observable.fromEvent(divs, 'click')
 
-		const subscription = source.subscribe(
-			e => result.textContent = e.clientX + ', ' + e.clientY
+		const subscription1 = source.subscribe(
+			e => console.log(`subscription1: ${e.clientX} ${e.clientY}`)
+			//e => result.textContent = e.clientX + ', ' + e.clientY
+		)
+		const subscription2 = source.subscribe(
+			e => console.log(`subscription2: ${e.clientX} ${e.clientY}`)
 		)
 
 		
